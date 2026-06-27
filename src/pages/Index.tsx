@@ -1,159 +1,160 @@
-import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 
+const platforms = [
+  { emoji: '▶️', name: 'YouTube', desc: 'Видео, Shorts, плейлисты — качество от 360p до 4K' },
+  { emoji: '🎵', name: 'TikTok', desc: 'Короткие видео без водяного знака' },
+  { emoji: '📸', name: 'Instagram', desc: 'Reels и посты с видео' },
+];
+
+const steps = [
+  { n: '01', emoji: '🔗', title: 'Отправь ссылку', desc: 'Скопируй URL видео и кинь боту в чат' },
+  { n: '02', emoji: '🎛️', title: 'Выбери качество', desc: 'Бот покажет доступные форматы: 360p, 720p, 1080p, 4K' },
+  { n: '03', emoji: '⚡', title: 'Получи видео', desc: 'Файл придёт прямо в Telegram за секунды' },
+];
+
 const commands = [
-  { cmd: '/start', emoji: '🚀', desc: 'Запустить бота и поприветствовать' },
-  { cmd: '/chat', emoji: '💬', desc: 'Начать диалог с нейросетью' },
-  { cmd: '/image', emoji: '🎨', desc: 'Сгенерировать картинку по описанию' },
-  { cmd: '/clear', emoji: '🧹', desc: 'Очистить историю переписки' },
-  { cmd: '/help', emoji: '🆘', desc: 'Список всех доступных команд' },
-  { cmd: '/mode', emoji: '🎭', desc: 'Сменить стиль ответов бота' },
-];
-
-const filters = [
-  { emoji: '🛡️', title: 'Безопасные темы', desc: 'Блокируем токсичность, спам и запрещённый контент автоматически' },
-  { emoji: '🎯', title: 'Контроль типа', desc: 'Текст, код, картинки — бот понимает формат и отвечает правильно' },
-  { emoji: '⚡', title: 'Лимиты запросов', desc: 'Анти-флуд: бот не даст себя перегрузить и сэкономит ресурсы' },
-];
-
-const demoChat = [
-  { from: 'user', text: 'Привет! Что ты умеешь? 😄' },
-  { from: 'bot', text: 'Привет, космонавт! 🤖 Я отвечу на любой вопрос, напишу код и нарисую картинку. С чего начнём?' },
-  { from: 'user', text: 'Объясни квантовую физику простыми словами' },
-  { from: 'bot', text: 'Представь, что частица — это монетка, которая крутится в воздухе. Пока не поймал — она и орёл, и решка одновременно ✨' },
+  { cmd: '/start', emoji: '🚀', desc: 'Запустить бота' },
+  { cmd: '/help', emoji: '🆘', desc: 'Инструкция по использованию' },
+  { cmd: '/formats', emoji: '🎛️', desc: 'Узнать доступные форматы для ссылки' },
 ];
 
 export default function Index() {
-  const [input, setInput] = useState('');
-
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-[-10%] left-[10%] w-[40vw] h-[40vw] rounded-full bg-purple-600/30 blur-[120px] animate-blob" />
-        <div className="absolute top-[20%] right-[5%] w-[35vw] h-[35vw] rounded-full bg-cyan-500/20 blur-[120px] animate-blob" style={{ animationDelay: '4s' }} />
-        <div className="absolute bottom-[0%] left-[30%] w-[30vw] h-[30vw] rounded-full bg-pink-500/20 blur-[120px] animate-blob" style={{ animationDelay: '8s' }} />
+        <div className="absolute top-[-10%] left-[5%] w-[45vw] h-[45vw] rounded-full bg-rose-600/25 blur-[130px] animate-blob" />
+        <div className="absolute top-[30%] right-[0%] w-[35vw] h-[35vw] rounded-full bg-orange-500/20 blur-[120px] animate-blob" style={{ animationDelay: '5s' }} />
+        <div className="absolute bottom-[5%] left-[25%] w-[30vw] h-[30vw] rounded-full bg-yellow-500/15 blur-[120px] animate-blob" style={{ animationDelay: '9s' }} />
       </div>
 
       <header className="relative z-10 flex items-center justify-between px-6 md:px-12 py-6">
         <div className="flex items-center gap-2">
-          <span className="text-2xl animate-float">🤖</span>
-          <span className="font-display font-extrabold text-xl tracking-tight">NEONO</span>
+          <span className="text-2xl animate-float">📥</span>
+          <span className="font-display font-extrabold text-xl tracking-tight">SAVEIT</span>
         </div>
-        <a
-          href="#"
-          className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-5 py-2.5 text-sm font-medium transition-all hover:scale-105"
-        >
+        <a href="#" className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-5 py-2.5 text-sm font-medium transition-all hover:scale-105">
           <Icon name="Send" size={16} />
           Открыть в Telegram
         </a>
       </header>
 
-      <section className="relative z-10 px-6 md:px-12 pt-10 md:pt-16 pb-20 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <section className="relative z-10 px-6 md:px-12 pt-10 md:pt-16 pb-24 max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
         <div>
-          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-semibold text-purple-200 mb-6">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-blink" /> Бот онлайн 24/7
+          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-semibold text-rose-200 mb-6">
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-blink" /> Работает 24/7 · Бесплатно
           </div>
-          <h1 className="font-display font-black text-5xl md:text-7xl leading-[0.95] mb-6">
-            Твой <span className="text-gradient">ГПТ-бот</span><br />в Телеграме 🚀
+          <h1 className="font-display font-black text-5xl md:text-7xl leading-[0.92] mb-6">
+            Скачай<br /><span className="text-gradient">любое</span><br />видео 📥
           </h1>
           <p className="text-lg text-white/60 mb-8 max-w-md">
-            Общайся с нейросетью, генерируй идеи и картинки — прямо в чате. С умной фильтрацией запросов и заботой о тебе.
+            YouTube, TikTok, Instagram — отправь ссылку боту и получи видео в любом качестве прямо в Telegram.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#" className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-cyan-400 text-black font-bold rounded-full px-7 py-4 hover:scale-105 transition-transform glow">
-              <span>💬</span> Начать общение
+            <a href="#" className="flex items-center gap-2 bg-gradient-to-r from-rose-500 to-orange-400 text-white font-bold rounded-full px-7 py-4 hover:scale-105 transition-transform">
+              <Icon name="Send" size={18} /> Запустить бота
             </a>
-            <a href="#commands" className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-7 py-4 font-semibold hover:bg-white/10 transition-all">
-              <Icon name="List" size={18} /> Все команды
+            <a href="#how" className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-7 py-4 font-semibold hover:bg-white/10 transition-all">
+              <Icon name="Play" size={18} /> Как это работает
             </a>
           </div>
         </div>
 
         <div className="relative animate-float">
-          <div className="rounded-[2rem] bg-[#12101f]/80 backdrop-blur-xl border border-white/10 p-5 shadow-2xl glow">
+          <div className="rounded-[2rem] bg-[#12101f]/80 backdrop-blur-xl border border-white/10 p-5 shadow-2xl">
             <div className="flex items-center gap-2 pb-4 border-b border-white/5 mb-4">
-              <span className="text-xl">🤖</span>
+              <span className="text-xl">📥</span>
               <div>
-                <p className="font-semibold text-sm">NEONO Bot</p>
-                <p className="text-xs text-green-400">печатает...</p>
+                <p className="font-semibold text-sm">SAVEIT Bot</p>
+                <p className="text-xs text-green-400">онлайн</p>
               </div>
             </div>
-            <div className="space-y-3">
-              {demoChat.map((m, i) => (
-                <div key={i} className={`flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
-                    m.from === 'user'
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-br-md'
-                      : 'bg-white/8 text-white/90 rounded-bl-md'
-                  }`}>
-                    {m.text}
-                  </div>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-end">
+                <div className="bg-gradient-to-r from-rose-500 to-orange-400 text-white rounded-2xl rounded-br-md px-4 py-2.5 max-w-[80%] break-all">
+                  https://youtube.com/watch?v=dQw4w9WgXcQ
                 </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-2 mt-4 bg-white/5 rounded-full px-4 py-2 border border-white/10">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Напиши сообщение..."
-                className="bg-transparent flex-1 text-sm outline-none placeholder:text-white/30"
-              />
-              <button className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 flex items-center justify-center text-black hover:scale-110 transition-transform">
-                <Icon name="ArrowUp" size={16} />
-              </button>
+              </div>
+              <div className="flex justify-start">
+                <div className="bg-white/8 text-white/90 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]">
+                  🎛️ Выбери качество:
+                </div>
+              </div>
+              <div className="flex gap-2 flex-wrap pl-2">
+                {['360p', '720p', '1080p ⭐', '4K'].map(q => (
+                  <button key={q} className={`text-xs rounded-xl px-3 py-1.5 border transition-all ${q.includes('1080') ? 'bg-gradient-to-r from-rose-500 to-orange-400 border-transparent text-white' : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'}`}>
+                    {q}
+                  </button>
+                ))}
+              </div>
+              <div className="flex justify-start">
+                <div className="bg-white/8 text-white/90 rounded-2xl rounded-bl-md px-4 py-2.5 max-w-[85%]">
+                  ⚡ Загружаю 1080p... готово!<br />
+                  <span className="text-white/50 text-xs">video_1080p.mp4 · 48 МБ</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="commands" className="relative z-10 px-6 md:px-12 py-20 max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-cyan-300 mb-2">⌨️ КОМАНДЫ</p>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl">Чем управляем ботом</h2>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {commands.map((c) => (
-            <div key={c.cmd} className="group bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:-translate-y-1 transition-all cursor-pointer">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl group-hover:scale-125 transition-transform">{c.emoji}</span>
-                <code className="font-display font-bold text-lg text-gradient">{c.cmd}</code>
-              </div>
-              <p className="text-sm text-white/60">{c.desc}</p>
+      <section className="relative z-10 px-6 md:px-12 py-10 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-5">
+          {platforms.map((p) => (
+            <div key={p.name} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:-translate-y-1 transition-all">
+              <span className="text-3xl mb-3 block">{p.emoji}</span>
+              <h3 className="font-display font-bold text-xl mb-1">{p.name}</h3>
+              <p className="text-white/50 text-sm">{p.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="relative z-10 px-6 md:px-12 py-20 max-w-6xl mx-auto">
+      <section id="how" className="relative z-10 px-6 md:px-12 py-20 max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-pink-300 mb-2">🛡️ ФИЛЬТРАЦИЯ ЗАПРОСОВ</p>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl">Умный контроль типов</h2>
-          <p className="text-white/50 mt-4 max-w-xl mx-auto">Бот анализирует каждое сообщение и решает, как лучше ответить — безопасно и точно</p>
+          <p className="text-sm font-semibold text-orange-300 mb-2">⚡ КАК ЭТО РАБОТАЕТ</p>
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl">Три шага</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
-          {filters.map((f, idx) => (
-            <div key={f.title} className="relative bg-gradient-to-b from-white/8 to-white/[0.02] border border-white/10 rounded-3xl p-7 hover:border-purple-400/40 transition-all">
-              <div className="text-4xl mb-4 animate-float" style={{ animationDelay: `${idx * 0.6}s` }}>{f.emoji}</div>
-              <h3 className="font-display font-bold text-xl mb-2">{f.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
+          {steps.map((s) => (
+            <div key={s.n} className="relative bg-gradient-to-b from-white/8 to-white/[0.02] border border-white/10 rounded-3xl p-7">
+              <div className="font-display font-black text-6xl text-white/5 absolute top-4 right-6 select-none">{s.n}</div>
+              <div className="text-3xl mb-4 animate-float" style={{ animationDelay: `${parseInt(s.n) * 0.5}s` }}>{s.emoji}</div>
+              <h3 className="font-display font-bold text-lg mb-2">{s.title}</h3>
+              <p className="text-white/55 text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="relative z-10 px-6 md:px-12 py-10 max-w-6xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-sm font-semibold text-rose-300 mb-2">⌨️ КОМАНДЫ</p>
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl">Управление ботом</h2>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+          {commands.map(c => (
+            <div key={c.cmd} className="group bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:-translate-y-1 transition-all text-center">
+              <div className="text-2xl mb-2 group-hover:scale-125 transition-transform">{c.emoji}</div>
+              <code className="font-display font-bold text-base text-gradient block mb-1">{c.cmd}</code>
+              <p className="text-xs text-white/50">{c.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="relative z-10 px-6 md:px-12 py-20 max-w-4xl mx-auto text-center">
-        <div className="rounded-[2.5rem] bg-gradient-to-br from-purple-600/30 via-cyan-500/20 to-pink-500/30 border border-white/10 p-12 backdrop-blur-sm">
-          <div className="text-5xl mb-4 animate-float">✨</div>
-          <h2 className="font-display font-black text-4xl md:text-5xl mb-4">Готов к запуску?</h2>
-          <p className="text-white/60 mb-8 max-w-md mx-auto">Добавь NEONO в Телеграм и начни общаться с нейросетью прямо сейчас</p>
-          <a href="#" className="inline-flex items-center gap-2 bg-white text-black font-bold rounded-full px-8 py-4 hover:scale-105 transition-transform">
-            <Icon name="Send" size={18} /> Запустить бота
+        <div className="rounded-[2.5rem] bg-gradient-to-br from-rose-600/30 via-orange-500/20 to-yellow-500/20 border border-white/10 p-12 backdrop-blur-sm">
+          <div className="text-5xl mb-4 animate-float">📥</div>
+          <h2 className="font-display font-black text-4xl md:text-5xl mb-4">Попробуй сейчас!</h2>
+          <p className="text-white/60 mb-8 max-w-md mx-auto">Бесплатно, без регистрации — просто кинь ссылку</p>
+          <a href="#" className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-orange-400 text-white font-bold rounded-full px-8 py-4 hover:scale-105 transition-transform">
+            <Icon name="Send" size={18} /> Открыть SAVEIT в Telegram
           </a>
         </div>
       </section>
 
       <footer className="relative z-10 px-6 md:px-12 py-10 text-center text-white/30 text-sm border-t border-white/5">
-        <span className="font-display font-bold text-white/50">🤖 NEONO</span> · ГПТ-бот в Телеграме · 2026
+        <span className="font-display font-bold text-white/50">📥 SAVEIT</span> · Загрузчик видео из Telegram · 2026
       </footer>
     </div>
   );

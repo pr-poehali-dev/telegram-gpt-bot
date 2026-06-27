@@ -106,7 +106,7 @@
     font-family: "Unbounded", sans-serif;
   }
   .text-gradient {
-    background: linear-gradient(120deg, #c084fc 0%, #38bdf8 50%, #f472b6 100%);
+    background: linear-gradient(120deg, #fb7185 0%, #fb923c 50%, #fbbf24 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
