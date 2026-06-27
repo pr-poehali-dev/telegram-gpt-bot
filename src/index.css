@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 250 60% 5%;
+    --foreground: 280 20% 96%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -97,5 +97,64 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Golos Text", sans-serif;
   }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Unbounded", sans-serif;
+  }
+  .text-gradient {
+    background: linear-gradient(120deg, #c084fc 0%, #38bdf8 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .glow {
+    box-shadow: 0 0 60px -10px rgba(168, 85, 247, 0.6);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.15);
+  }
+  66% {
+    transform: translate(-30px, 20px) scale(0.9);
+  }
+}
+.animate-blob {
+  animation: blob 14s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  90%,
+  100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.2;
+  }
+}
+.animate-blink {
+  animation: blink 1.4s infinite;
 }
